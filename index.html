@@ -1,250 +1,348 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Binyanim Trainer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Binyanim Trainer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <header>
-    <a class="logo">Binyanim Trainer</a>
-    <span>Score: </span><span id="score"></span>
+  <a class="logo">Binyanim Trainer</a>
+  <span>Score: </span><span id="score"></span>
 </header>
 
-<!--<div class="row">-->
-<!--    <div class="input-group">-->
-<!--        <input id="from" type="number" onsubmit="set_filter()" class="filter">-->
-<!--        - -->
-<!--        <input id="to" type="number" onsubmit="set_filter()" class="filter">-->
-<!--    </div>-->
-
-<!--</div>-->
 <div class="row">
+  <div class="collapse">
+    <input type="checkbox" id="settings-section" aria-hidden="true">
+    <label for="settings-section" aria-hidden="true"><span class="icon-settings"></span> Settings</label>
     <div>
-        <button onclick="generate_new()">New Verb</button>
+      <p>Allowed Tenses: </p>
+    <div class="input-group">
+      <input type="checkbox" id="past" checked>
+      <label for="past" aria-hidden="true">Past</label>
+      <input type="checkbox" id="present" checked>
+      <label for="present" aria-hidden="true">Present</label>
+      <input type="checkbox" id="future" checked>
+      <label for="future" aria-hidden="true">Future</label>
     </div>
-</div>
-<div class="row">
-  <div>
-    <p>Here is your verb: </p><p id="verb">Click 'New Verb' to start!</p>
+
+    <div>
+      <p>Allowed Binyanim: </p>
+    <div class="input-group">
+      <input type="checkbox" id="PAAL" checked>
+      <label for="PAAL" aria-hidden="true">Pa'al</label>
+      <input type="checkbox" id="PIEL" checked>
+      <label for="PIEL" aria-hidden="true">Pi'el</label>
+      <input type="checkbox" id="HIFIL" checked>
+      <label for="HIFIL" aria-hidden="true">Hif'il</label>
+      <input type="checkbox" id="HITPAEL" checked>
+      <label for="HITPAEL" aria-hidden="true">Hitpa'el</label>
+      <input type="checkbox" id="NIFAL" checked>
+      <label for="NIFAL" aria-hidden="true">Nif'al</label>
+<!--      <input type="checkbox" id="HUFAL">
+      <label for="HUFAL" aria-hidden="true">Huf'al</label>
+      <input type="checkbox" id="PUAL">
+      <label for="PUAL" aria-hidden="true">Pu'al</label>-->
+    </div>
+      </div>
+            </div>
   </div>
 </div>
 <div class="row">
-    <div class="input-group">
-        <label for="group">Select your answer:</label>
-        <select id="group">
-            <option value="PA'AL" selected="selected">PA'AL</option>
-            <option value="PI'EL">PI'EL</option>
-            <option value="HIF'IL">HIF'IL</option>
-            <option value="NIF'AL">NIF'AL</option>
-            <option value="HITPA'EL">HITPA'EL</option>
-        </select>
-        <!--input type="text" id="root_input"-->
-<button id="check_button" onclick="check()" disabled>Check</button>
-    </div>
+  <div>
+    <button onclick="generate_new()">New Verb</button>
+  </div>
 </div>
 <div class="row">
-    <div class="collapse">
-        <input type="checkbox" id="solution-section" aria-hidden="true" disabled>
-        <label for="solution-section" aria-hidden="true">Check Solution</label>
-        <div>
-            <p id="solution"></p>
-            <span>Root: </span><p id="root"></p>
-            <span>Infinitive: </span><p id="infinitive"></p>
-            <span>Source URL: </span><a id="url" target="_blank" rel="noopener noreferrer"></a>
-        </div>
+  <div>
+    <p>Here is your verb: </p>
+    <p id="verb">Click 'New Verb' to start!</p>
+  </div>
+</div>
+<div class="row">
+  <div class="input-group">
+    <label for="group">Select your answer:</label>
+    <select id="group">
+      <option value="PA'AL" selected="selected">Pa'al</option>
+      <option value="PI'EL">Pi'el</option>
+      <option value="HIF'IL">Hif'il</option>
+      <option value="NIF'AL">Nif'al</option>
+      <option value="HITPA'EL">Hitpa'el</option>
+<!--      <option value="HUF'AL">Huf'al</option>
+      <option value="PU'AL">Pu'al</option>-->
+    </select>
+    <!--input type="text" id="root_input"-->
+    <button id="check_button" onclick="check()" disabled>Check</button>
+  </div>
+</div>
+<div class="row">
+  <div class="collapse">
+    <input type="checkbox" id="solution-section" aria-hidden="true" disabled>
+    <label for="solution-section" aria-hidden="true">Check Solution</label>
+    <div>
+      <p id="solution"></p>
+      <span>Tense: </span>
+      <p id="tense"></p>
+      <span>Root: </span>
+      <p id="person"></p>
+      <span>Person: </span>
+      <p id="root"></p>
+      <span>Infinitive: </span>
+      <p id="infinitive"></p>
+      <span>Source URL: </span><a id="url" target="_blank" rel="noopener noreferrer"></a>
     </div>
+  </div>
 </div>
 
 </body>
 <style>
-    .filter {
-        width: 100px
-    }
+  .filter {
+    width: 100px
+  }
 </style>
 <script>
-    var verb = ''
-    var score = 0
-    var start = true
-    var verb_list = []
+  var verb = ''
+  var score = 0
+  var verb_list = []
+  var old_tenses = []
+  var old_binyanim = []
+  var allowed_binyanim = []
+  var verb_list_filtered = []
+  var allowed_tenses = ['Present']
+  var available_binyanim = [] // keep track of already used binyanim to not over-use the same one
 
-    var allowed_tenses = ['Present']
+  function getGroupInput() {
+    groupSelect = document.getElementById("group")
+    return groupSelect.options[groupSelect.selectedIndex].value;
+  }
 
-    function getGroupInput(){
-        groupSelect = document.getElementById("group")
-        return groupSelect.options[groupSelect.selectedIndex].value;
+  function getAllowedGroups() {
+    groupSelect = document.getElementById("group")
+
+    var options = []
+    var i;
+    for (i = 0; i < groupSelect.length; i++) {
+      options.push(groupSelect.options[i].value)
     }
 
-    function getAllowedGroups(){
-        groupSelect = document.getElementById("group")
+    return options;
+  }
 
-      var options = []
-      var i;
-      for (i = 0; i < groupSelect.length; i++) {
-        options.push(groupSelect.options[i].value)
-      }
+  function getRootInput() {
+    return document.getElementById("root_input").value.trim()
+  }
 
-        return options;
+  function clearNumberInput() {
+    document.getElementById("root_input").value = ''
+  }
+
+  function focusNumberInput() {
+    document.getElementById("root_input").focus()
+
+  }
+
+  function validRootInput(value) {
+    if (value) {
+      document.getElementById("root_input").setAttribute("style", '')
+    } else {
+      document.getElementById("root_input").setAttribute("style", 'border-color:var(--input-invalid-color)')
+    }
+  }
+
+  function validGroupInput(value) {
+    if (value) {
+      document.getElementById("group").setAttribute("style", '')
+    } else {
+      document.getElementById("group").setAttribute("style", 'border-color:var(--input-invalid-color)')
+    }
+  }
+
+  function setScore() {
+    score_elem = document.getElementById('score')
+    score_elem.innerText = score
+  }
+
+  function setVerb(verb) {
+    verb_elem = document.getElementById('verb')
+    verb_elem.innerText = verb
+  }
+
+  function setTenseFilter() {
+    tenses = []
+    if (document.getElementById('present').checked){
+      tenses.push('Present')
+    }
+    if (document.getElementById('past').checked){
+      tenses.push('Past')
+    }
+    if (document.getElementById('future').checked){
+      tenses.push('Future')
+    }
+    allowed_tenses = tenses
+
+  }
+
+  function setBinyanFilter() {
+    binyanim = []
+
+    if (document.getElementById('PAAL').checked){
+      binyanim.push('PA\'AL')
+    }
+    if (document.getElementById('PIEL').checked){
+      binyanim.push('PI\'EL')
+    }
+    if (document.getElementById('HIFIL').checked){
+      binyanim.push('HIF\'IL')
+    }
+    if (document.getElementById('HITPAEL').checked){
+      binyanim.push('HITPA\'EL')
+    }
+    if (document.getElementById('NIFAL').checked){
+      binyanim.push('NIF\'AL')
+    }
+/*    if (document.getElementById('HUFAL').checked){
+      binyanim.push('HUF\'AL')
+    }
+    if (document.getElementById('PUAL').checked){
+      binyanim.push('PU\'AL')
+    }*/
+    allowed_binyanim = binyanim
+
+  }
+
+  function filter_verb_list() {
+    if(old_tenses != allowed_tenses || old_binyanim != allowed_binyanim){
+      verb_list_filtered = verb_list.filter((elem)=>{
+       return allowed_tenses.indexOf(elem['tense']) >= 0 && allowed_binyanim.indexOf(elem['binyan']) >= 0
+      })
+
+      old_tenses = allowed_tenses
+      old_binyanim = allowed_binyanim
     }
 
-    function getRootInput(){
-        return document.getElementById("root_input").value.trim()
-    }
+  }
 
-    function clearNumberInput() {
-        document.getElementById("root_input").value = ''
-    }
+  function enableInput() {
+    //document.getElementById("root_input").disabled = false
+    document.getElementById("check_button").disabled = false
+    document.getElementById("solution-section").disabled = false
+    document.getElementById("group").disabled = false
+  }
 
-    function focusNumberInput() {
-        document.getElementById("root_input").focus()
+  function disableInput() {
+    //document.getElementById("root_input").disabled = false
+    document.getElementById("check_button").disabled = true
+    document.getElementById("group").disabled = true
+  }
 
-    }
+  function setSolution(verb_index) {
+    document.getElementById("solution-section").checked = false
+    document.getElementById("tense").innerText = verb_list_filtered[verb_index]["tense"];
+    document.getElementById("solution").innerText = verb_list_filtered[verb_index]["binyan"];
+    document.getElementById("person").innerText = verb_list_filtered[verb_index]["person"];
+    document.getElementById("root").innerText = verb_list_filtered[verb_index]["root"];
+    document.getElementById("infinitive").innerText = verb_list_filtered[verb_index]["infinitive"];
+    document.getElementById("url").innerText = verb_list_filtered[verb_index]["url"];
+    document.getElementById("url").href = verb_list_filtered[verb_index]["url"];
 
-    function validRootInput(value){
-        if(value){
-            document.getElementById("root_input").setAttribute("style", '')
-        }
-        else{
-            document.getElementById("root_input").setAttribute("style", 'border-color:var(--input-invalid-color)')
-        }
-    }
-
-    function validGroupInput(value){
-        if(value){
-            document.getElementById("group").setAttribute("style", '')
-        }
-        else{
-            document.getElementById("group").setAttribute("style", 'border-color:var(--input-invalid-color)')
-        }
-    }
-
-    function setScore(){
-        score_elem = document.getElementById('score')
-        score_elem.innerText = score
-    }
-
-    function setVerb(verb){
-        verb_elem = document.getElementById('verb')
-        verb_elem.innerText = verb
-    }
-
-    function setFilter(){
-        fromVal = document.getElementById('from').value.trim()
-        toVal = document.getElementById('to').value.trim()
-
-    }
-
-    function enableInput() {
-        //document.getElementById("root_input").disabled = false
-        document.getElementById("check_button").disabled = false
-        document.getElementById("solution-section").disabled = false
-      document.getElementById("group").disabled = false
-    }
-
-    function disableInput() {
-        //document.getElementById("root_input").disabled = false
-        document.getElementById("check_button").disabled = true
-      document.getElementById("group").disabled = true
-    }
-
-    function setSolution(verb_index){
-        document.getElementById("solution-section").checked = false
-        document.getElementById("solution").innerText = verb_list["binyan"][verb_index];
-        document.getElementById("root").innerText = verb_list["root"][verb_index];
-        document.getElementById("infinitive").innerText = verb_list["infinitive"][verb_index];
-        document.getElementById("url").innerText = verb_list["url"][verb_index];
-        document.getElementById("url").href = verb_list["url"][verb_index];
-
-    }
-
-
-    function generate_new(){
-
-        enableInput()
-
-        //setFilter()
-
-        verb_list_length = 1239
-        verb_index = Math.floor(Math.random() * verb_list_length)
-
-        while (getAllowedGroups().indexOf(verb_list["binyan"][verb_index]) < 0) {
-            verb_index = Math.floor(Math.random() * verb_list_length)
-
-        }
-
-        selected_verb = verb_list["niqqud_less"][verb_index];
-        group = verb_list["binyan"][verb_index];
-
-
-        setVerb(selected_verb)
-        setSolution(verb_index)
-        //focusNumberInput()
-    }
-
-    function show_niqqud(){
-      setVerb(verb_list["verb"][verb_index])
-    }
-
-    function enable_solution_area(){
-      document.getElementById("solution-section").checked = true
-    }
-
-    function check(){
-
-        groupInput = getGroupInput()
-        if(group === groupInput){
-
-            enable_solution_area()
-            //generate_new()
-            disableInput()
-            correct()
-        }
-        else{
-            wrong()
-        }
-    }
-    function correct(){
-        score += 1
-        setScore()
-        //clearGroupInput()
-        validGroupInput(true)
-    }
-    function wrong()
-    {
-        if(score>0) score -= 1
-        setScore()
-        validGroupInput(false)
-    }
-
-  function readTextFile(file, callback) {
-      var rawFile = new XMLHttpRequest();
-      rawFile.overrideMimeType("application/json");
-      rawFile.open("GET", file, true);
-      rawFile.onreadystatechange = function() {
-          if (rawFile.readyState === 4 && rawFile.status == "200") {
-            console.log(rawFile.responseText)
-            callback(rawFile.responseText);
-          }
-          else {
-            console.log(rawFile)
-          }
-      }
-      rawFile.send(null);
   }
 
 
+  function generate_new() {
 
-    function get_verb_list(){
-      readTextFile("sampled_verbs.json", function(text){
-        verb_list = JSON.parse(text); //parse JSON
-        console.log(verb_list["verb"][0]);
-      });
+    enableInput()
+
+    setTenseFilter()
+    setBinyanFilter()
+
+    filtered_binyanim = allowed_binyanim.filter(value => available_binyanim.includes(value));
+
+    if(filtered_binyanim.length < 1){
+      available_binyanim = allowed_binyanim
+    }
+    else{
+      allowed_binyanim = filtered_binyanim
     }
 
+    console.log('allowed')
+    console.log(allowed_binyanim)
 
+    filter_verb_list()
+
+    verb_list_length = verb_list_filtered.length
+    verb_index = Math.floor(Math.random() * verb_list_length)
+
+
+    selected_verb = verb_list_filtered[verb_index]["niqqud_less"];
+    group = verb_list_filtered[verb_index]["binyan"];
+
+    available_binyanim.splice(available_binyanim.indexOf(group), 1)
+    setVerb(selected_verb)
+    setSolution(verb_index)
+  }
+
+  function show_niqqud() {
+    setVerb(verb_list_filtered["verb"][verb_index])
+  }
+
+  function enable_solution_area() {
+    document.getElementById("solution-section").checked = true
+  }
+
+  function check() {
+
+    groupInput = getGroupInput()
+    if (group === groupInput) {
+
+      enable_solution_area()
+      //generate_new()
+      disableInput()
+      correct()
+    } else {
+      wrong()
+    }
+  }
+
+  function correct() {
+    score += 1
     setScore()
-    get_verb_list()
+    //clearGroupInput()
+    validGroupInput(true)
+  }
+
+  function wrong() {
+    if (score > 0) score -= 1
+    setScore()
+    validGroupInput(false)
+  }
+
+  function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function () {
+      if (rawFile.readyState === 4 && rawFile.status == "200") {
+        console.log(rawFile.responseText)
+        callback(rawFile.responseText);
+      } else {
+        console.log(rawFile)
+      }
+    }
+    rawFile.send(null);
+  }
+
+
+  function get_verb_list() {
+    readTextFile("all_verbs_binyanim_infinitive.json", function (text) {
+      verb_list = JSON.parse(text); //parse JSON
+      console.log(verb_list[0]);
+    });
+  }
+
+
+  setScore()
+  get_verb_list()
 
 </script>
 </html>
