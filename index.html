@@ -5,11 +5,13 @@
   <title>Binyanim Trainer</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="scripts.js"></script>
 </head>
 <body>
 <header>
   <a class="logo">Binyanim Trainer</a>
   <span>Score: </span><span id="score"></span>
+  <a href="verb_practice.html">Click here to practice more!</a>
 </header>
 
 <div class="row">
@@ -57,7 +59,7 @@
 <div class="row">
   <div>
     <p>Here is your verb: </p>
-    <p id="verb">Click 'New Verb' to start!</p>
+    <h2 id="verb">Click 'New Verb' to start!</h2>
   </div>
 </div>
 <div class="row">
@@ -84,9 +86,9 @@
       <p id="solution"></p>
       <span>Tense: </span>
       <p id="tense"></p>
-      <span>Root: </span>
-      <p id="person"></p>
       <span>Person: </span>
+      <p id="person"></p>
+      <span>Root: </span>
       <p id="root"></p>
       <span>Infinitive: </span>
       <p id="infinitive"></p>
@@ -165,7 +167,7 @@
 
   function setVerb(verb) {
     verb_elem = document.getElementById('verb')
-    verb_elem.innerText = verb
+    verb_elem.innerText = verb["niqqud_less"]
   }
 
   function setTenseFilter() {
@@ -211,18 +213,6 @@
 
   }
 
-  function filter_verb_list() {
-    if(old_tenses != allowed_tenses || old_binyanim != allowed_binyanim){
-      verb_list_filtered = verb_list.filter((elem)=>{
-       return allowed_tenses.indexOf(elem['tense']) >= 0 && allowed_binyanim.indexOf(elem['binyan']) >= 0
-      })
-
-      old_tenses = allowed_tenses
-      old_binyanim = allowed_binyanim
-    }
-
-  }
-
   function enableInput() {
     //document.getElementById("root_input").disabled = false
     document.getElementById("check_button").disabled = false
@@ -236,15 +226,15 @@
     document.getElementById("group").disabled = true
   }
 
-  function setSolution(verb_index) {
+  function setSolution(selected_verb) {
     document.getElementById("solution-section").checked = false
-    document.getElementById("tense").innerText = verb_list_filtered[verb_index]["tense"];
-    document.getElementById("solution").innerText = verb_list_filtered[verb_index]["binyan"];
-    document.getElementById("person").innerText = verb_list_filtered[verb_index]["person"];
-    document.getElementById("root").innerText = verb_list_filtered[verb_index]["root"];
-    document.getElementById("infinitive").innerText = verb_list_filtered[verb_index]["infinitive"];
-    document.getElementById("url").innerText = verb_list_filtered[verb_index]["url"];
-    document.getElementById("url").href = verb_list_filtered[verb_index]["url"];
+    document.getElementById("tense").innerText = selected_verb["tense"];
+    document.getElementById("solution").innerText = selected_verb["binyan"];
+    document.getElementById("person").innerText = selected_verb["person"];
+    document.getElementById("root").innerText = selected_verb["root"];
+    document.getElementById("infinitive").innerText = selected_verb["infinitive"];
+    document.getElementById("url").innerText = selected_verb["url"];
+    document.getElementById("url").href = selected_verb["url"];
 
   }
 
@@ -256,34 +246,13 @@
     setTenseFilter()
     setBinyanFilter()
 
-    filtered_binyanim = allowed_binyanim.filter(value => available_binyanim.includes(value));
+    selected_verb = get_new_verb(allowed_tenses, allowed_binyanim, verb_list)
+    console.log(selected_verb)
 
-    if(filtered_binyanim.length < 1){
-      available_binyanim = allowed_binyanim
-    }
-    else{
-      allowed_binyanim = filtered_binyanim
-    }
+    group = selected_verb["binyan"];
 
-    console.log('allowed')
-    console.log(allowed_binyanim)
-
-    filter_verb_list()
-
-    verb_list_length = verb_list_filtered.length
-    verb_index = Math.floor(Math.random() * verb_list_length)
-
-
-    selected_verb = verb_list_filtered[verb_index]["niqqud_less"];
-    group = verb_list_filtered[verb_index]["binyan"];
-
-    available_binyanim.splice(available_binyanim.indexOf(group), 1)
     setVerb(selected_verb)
-    setSolution(verb_index)
-  }
-
-  function show_niqqud() {
-    setVerb(verb_list_filtered["verb"][verb_index])
+    setSolution(selected_verb)
   }
 
   function enable_solution_area() {
