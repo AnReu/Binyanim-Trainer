@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Go-To Verbs Trainer</title>
+    <link rel="stylesheet" href="mini-default.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="scripts.js"></script>
+</head>
+<body>
+<header>
+    <a class="logo">Go-To Verbs Trainer</a>
+    <a href="index.html" class="button">Home</a>
+</header>
+
+<div class="row">
+    <div class="collapse">
+        <input type="checkbox" id="settings-section" aria-hidden="true">
+        <label for="settings-section" aria-hidden="true"><span class="icon-settings"></span> Settings</label>
+        <div>
+            <p>Allowed Tenses: </p>
+            <div class="input-group">
+                <input type="checkbox" id="past" checked>
+                <label for="past" aria-hidden="true">Past</label>
+                <input type="checkbox" id="present" checked>
+                <label for="present" aria-hidden="true">Present</label>
+                <input type="checkbox" id="future" checked>
+                <label for="future" aria-hidden="true">Future</label>
+            </div>
+
+            <div>
+                <p>Allowed Binyanim: </p>
+                <div class="input-group">
+                    <input type="checkbox" id="PAAL" checked>
+                    <label for="PAAL" aria-hidden="true">Pa'al</label>
+                    <input type="checkbox" id="PIEL" checked>
+                    <label for="PIEL" aria-hidden="true">Pi'el</label>
+                    <input type="checkbox" id="HIFIL" checked>
+                    <label for="HIFIL" aria-hidden="true">Hif'il</label>
+                    <input type="checkbox" id="HITPAEL" checked>
+                    <label for="HITPAEL" aria-hidden="true">Hitpa'el</label>
+                    <input type="checkbox" id="NIFAL" checked>
+                    <label for="NIFAL" aria-hidden="true">Nif'al</label>
+                    <!--      <input type="checkbox" id="HUFAL">
+                          <label for="HUFAL" aria-hidden="true">Huf'al</label>
+                          <input type="checkbox" id="PUAL">
+                          <label for="PUAL" aria-hidden="true">Pu'al</label>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div>
+        <button onclick="generate_new()">New Verb</button>
+    </div>
+</div>
+
+<div class="row">
+        <div>
+            <h4>Conjugate your Go-To Verb as follows: </h4>
+                <p id="binyan">Click 'New Verb' to start!</p>
+                <p id="tense"></p>
+                <p id="person"></p>
+        </div>
+</div>
+<p id="instruction"></p>
+<div class="row">
+    <div class="collapse">
+        <input type="checkbox" id="solution-section" aria-hidden="true" disabled>
+        <label for="solution-section" aria-hidden="true">Check Solution</label>
+        <div>
+            <span>Solution: </span>
+            <p id="solution-verb"></p>
+            <span>Pronounciation: </span>
+            <p id="pronounciation"></p>
+            <span>Translation: </span>
+            <p id="translation"></p>
+            <span>Source URL: </span><a id="url" target="_blank" rel="noopener noreferrer"></a>
+        </div>
+    </div>
+</div>
+
+</body>
+<style>
+    .filter {
+        width: 100px
+    }
+</style>
+<script>
+    var verb = ''
+    var score = 0
+    var verb_list = []
+    var old_tenses = []
+    var old_binyan = ''
+    var allowed_binyanim = []
+    var verb_list_filtered = []
+    var allowed_tenses = ['Present']
+
+
+    function getRootInput() {
+        return document.getElementById("root_input").value.trim()
+    }
+
+    function clearNumberInput() {
+        document.getElementById("root_input").value = ''
+    }
+
+    function focusNumberInput() {
+        document.getElementById("root_input").focus()
+
+    }
+
+    function validRootInput(value) {
+        if (value) {
+            document.getElementById("root_input").setAttribute("style", '')
+        } else {
+            document.getElementById("root_input").setAttribute("style", 'border-color:var(--input-invalid-color)')
+        }
+    }
+
+
+    function setVerb(verb) {
+        document.getElementById("instruction").innerText = "Write the solution on a sheet of paper or do it in your head. Click below for the solution:"
+        verb_binyan = verb["binyan"]
+        binyan = ""
+        if(verb_binyan == "PI'EL"){
+            binyan = "Pi'el"
+        }
+        else if(verb_binyan == 'PA\'AL'){
+            binyan = "Pa'al"
+        }
+        else if(verb_binyan == 'HIF\'IL'){
+            binyan = "Hifil"
+        }
+        else if(verb_binyan == 'HITPA\'EL'){
+             binyan = "Hitpael"
+        }
+        else if(verb_binyan == 'NIF\'AL'){
+             binyan = "Nifal"
+        }
+
+        document.getElementById("binyan").innerText = "Binyan: " + binyan;
+        document.getElementById("person").innerText = "Person: " + verb["person"];
+        document.getElementById("tense").innerText = "Tense: " + verb["tense"];
+    }
+
+    function setTenseFilter() {
+        tenses = []
+        if (document.getElementById('present').checked){
+            tenses.push('Present')
+        }
+        if (document.getElementById('past').checked){
+            tenses.push('Past')
+        }
+        if (document.getElementById('future').checked){
+            tenses.push('Future')
+        }
+        allowed_tenses = tenses
+
+    }
+
+    function setBinyanFilter() {
+        binyanim = []
+
+        if (document.getElementById('PAAL').checked){
+            binyanim.push('PA\'AL')
+        }
+        if (document.getElementById('PIEL').checked){
+            binyanim.push('PI\'EL')
+        }
+        if (document.getElementById('HIFIL').checked){
+            binyanim.push('HIF\'IL')
+        }
+        if (document.getElementById('HITPAEL').checked){
+            binyanim.push('HITPA\'EL')
+        }
+        if (document.getElementById('NIFAL').checked){
+            binyanim.push('NIF\'AL')
+        }
+        /*    if (document.getElementById('HUFAL').checked){
+              binyanim.push('HUF\'AL')
+            }
+            if (document.getElementById('PUAL').checked){
+              binyanim.push('PU\'AL')
+            }*/
+        allowed_binyanim = binyanim
+
+    }
+
+    function enableInput() {
+        //document.getElementById("root_input").disabled = false
+        document.getElementById("solution-section").disabled = false
+    }
+
+
+    function setSolution(verb) {
+        document.getElementById("solution-section").checked = false
+        document.getElementById("pronounciation").innerText = verb["reading"];
+        document.getElementById("translation").innerText = verb["translation"];
+        document.getElementById("solution-verb").innerText = verb["verb"];
+        document.getElementById("url").innerText = verb["url"];
+        document.getElementById("url").href = verb["url"];
+
+    }
+
+
+    function generate_new() {
+
+
+        enableInput()
+
+        setTenseFilter()
+        setBinyanFilter()
+
+        selected_verb = get_new_verb(allowed_tenses, allowed_binyanim, verb_list)
+        console.log(selected_verb)
+
+        setVerb(selected_verb)
+        setSolution(selected_verb)
+    }
+
+
+    function enable_solution_area() {
+        document.getElementById("solution-section").checked = true
+    }
+
+
+
+    function get_verb_list() {
+        readTextFile("all_verbs_binyanim_infinitive.json", function (text) {
+            verb_list = JSON.parse(text); //parse JSON
+            console.log(verb_list[0]);
+            verb_list = filter_go_to_verbs(verb_list)
+
+        });
+    }
+
+
+    get_verb_list()
+
+</script>
+</html>
