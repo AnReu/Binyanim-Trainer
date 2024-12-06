@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Verb Form Trainer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+    <link rel="stylesheet" href="mini-default.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="scripts.js"></script>
 </head>
 <body>
 <header>
     <a class="logo">Verb Form Trainer</a>
-    <a href="index.html">Click here to practice more!</a>
+    <a href="index.html" class="button">Home</a>
 </header>
 
 <div class="row">
@@ -57,24 +57,26 @@
 </div>
 <div class="row">
     <div>
-        <p>Here is your verb: </p>
+        <p>Conjugate the following verb: </p>
         <h3 id="verb">Click 'New Verb' to start!</h3>
         <p id="person"></p>
         <p id="tense"></p>
     </div>
 </div>
+<p id="instruction"></p>
 <div class="row">
     <div class="collapse">
         <input type="checkbox" id="solution-section" aria-hidden="true" disabled>
         <label for="solution-section" aria-hidden="true">Check Solution</label>
         <div>
-            <p id="solution"></p>
+            <span>Solution: </span>
+            <p id="solution-verb"></p>
             <span>Pronounciation: </span>
             <p id="pronounciation"></p>
             <span>Translation: </span>
             <p id="translation"></p>
-            <span>Root: </span>
-            <p id="root"></p>
+            <span>Binyan: </span>
+            <p id="solution"></p>
             <span>Source URL: </span><a id="url" target="_blank" rel="noopener noreferrer"></a>
         </div>
     </div>
@@ -120,6 +122,7 @@
 
 
     function setVerb(verb) {
+        document.getElementById("instruction").innerText = "Write the solution on a sheet of paper or do it in your head. Click below for the solution:"
         verb_elem = document.getElementById('verb')
         verb_elem.innerText = verb['infinitive']
         document.getElementById("person").innerText = verb["person"];
@@ -179,10 +182,10 @@
         document.getElementById("solution-section").checked = false
         document.getElementById("pronounciation").innerText = verb["reading"];
         document.getElementById("translation").innerText = verb["translation"];
-        document.getElementById("solution").innerText = verb["binyan"];
-        document.getElementById("root").innerText = verb["root"];
+        document.getElementById("solution-verb").innerText = verb["verb"];
         document.getElementById("url").innerText = verb["url"];
         document.getElementById("url").href = verb["url"];
+        document.getElementById("solution").innerText = verb["binyan"];
 
     }
 
@@ -215,6 +218,7 @@
         readTextFile("learned_verbs_binyanim_infinitive.json", function (text) {
             verb_list = JSON.parse(text); //parse JSON
             console.log(verb_list[0]);
+
         });
     }
 
