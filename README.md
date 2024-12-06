@@ -1,6 +1,6 @@
-# Binyanim-Trainer
+# My small Hebrew Tools
 
-A small quiz which provides a Hebrew verb and asks for the correct binyan.
+This website provides three small tools for studying Hebrew verbs.
 
 Try it out here: https://anreu.github.io/Binyanim-Trainer/
 
