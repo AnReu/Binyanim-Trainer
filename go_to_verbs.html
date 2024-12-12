@@ -139,10 +139,17 @@
         else if(verb_binyan == 'NIF\'AL'){
              binyan = "Nifal"
         }
-
-        document.getElementById("binyan").innerText = "Binyan: " + binyan;
+        if(verb["phenomenon"]){
+            document.getElementById("binyan").innerText = "Binyan: " + binyan + ", " + verb["phenomenon"] + " Phenomenon";
+        }
+        else{
+            document.getElementById("binyan").innerText = "Binyan: " + binyan;
+        }
+        
         document.getElementById("person").innerText = "Person: " + verb["person"];
         document.getElementById("tense").innerText = "Tense: " + verb["tense"];
+        
+        
     }
 
     function setTenseFilter() {
@@ -228,10 +235,9 @@
 
 
     function get_verb_list() {
-        readTextFile("all_verbs_binyanim_infinitive.json", function (text) {
+        readTextFile("verb_list_go_to_verbs.json", function (text) {
             verb_list = JSON.parse(text); //parse JSON
             console.log(verb_list[0]);
-            verb_list = filter_go_to_verbs(verb_list)
 
         });
     }
