@@ -553,8 +553,8 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "אֶגָּמֵר",
-    "niqqud_less": "אגמר",
+    "verb": "אֶיגָּמֵר",
+    "niqqud_less": "איגמר",
     "translation": "I will come to an end",
     "reading": "egamer",
     "binyan": "NIF'AL",
@@ -567,7 +567,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "ניגמר",
+    "verb": "נִיגָּמֵר",
     "niqqud_less": "ניגמר",
     "translation": "we will come to an end",
     "reading": "nigamer",
@@ -581,7 +581,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "תיגמר",
+    "verb": "תִּיגָּמֵר",
     "niqqud_less": "תיגמר",
     "translation": "you m. sg. will come to an end",
     "reading": "tigamer",
@@ -595,7 +595,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "תיגמרי",
+    "verb": "תִּיגָּמְרִי",
     "niqqud_less": "תיגמרי",
     "translation": "you f. sg. will come to an end",
     "reading": "tigamri",
@@ -609,7 +609,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "תיגמרו",
+    "verb": "תִּיגָּמְרוּ",
     "niqqud_less": "תיגמרו",
     "translation": "you m. pl. will come to an end",
     "reading": "tigamru",
@@ -623,7 +623,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "ייגמר",
+    "verb": "יִיגָּמֵר",
     "niqqud_less": "ייגמר",
     "translation": "he / it will come to an end",
     "reading": "yigamer",
@@ -637,7 +637,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "תיגמר",
+    "verb": "תִּיגָּמֵר",
     "niqqud_less": "תיגמר",
     "translation": "she / it will come to an end",
     "reading": "tigamer",
@@ -651,7 +651,7 @@
     "infinitive_no_niqqud": "להיגמר"
   },
   {
-    "verb": "ייגמרו",
+    "verb": "יִיגָּמְרוּ",
     "niqqud_less": "ייגמרו",
     "translation": "they m. will come to an end",
     "reading": "yigamru",
@@ -777,7 +777,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברתי",
+    "verb": "דִּיבַּרְתִּי",
     "niqqud_less": "דיברתי",
     "translation": "I spoke",
     "reading": "dibarti",
@@ -791,7 +791,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברנו",
+    "verb": "דִּיבַּרְנוּ",
     "niqqud_less": "דיברנו",
     "translation": "we spoke",
     "reading": "dibarnu",
@@ -805,7 +805,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברת",
+    "verb": "דִּיבַּרְתָּ",
     "niqqud_less": "דיברת",
     "translation": "you m. sg. spoke",
     "reading": "dibarta",
@@ -819,7 +819,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברת",
+    "verb": "דִּיבַּרְתְּ",
     "niqqud_less": "דיברת",
     "translation": "you f. sg. spoke",
     "reading": "dibart",
@@ -833,7 +833,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברתם",
+    "verb": "דִּיבַּרְתֶּם",
     "niqqud_less": "דיברתם",
     "translation": "you m. pl. spoke",
     "reading": "dibartem",
@@ -847,7 +847,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברתן",
+    "verb": "דִּיבַּרְתֶּן",
     "niqqud_less": "דיברתן",
     "translation": "you f. pl. spoke",
     "reading": "dibarten",
@@ -861,7 +861,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיבר",
+    "verb": "דִּיבֵּר",
     "niqqud_less": "דיבר",
     "translation": "he / it spoke",
     "reading": "diber",
@@ -875,7 +875,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברה",
+    "verb": "דִּיבְּרָה",
     "niqqud_less": "דיברה",
     "translation": "she / it spoke",
     "reading": "dibra",
@@ -889,7 +889,7 @@
     "infinitive_no_niqqud": "לדבר"
   },
   {
-    "verb": "דיברו",
+    "verb": "דִּיבְּרוּ",
     "niqqud_less": "דיברו",
     "translation": "they spoke",
     "reading": "dibru",
@@ -1191,10 +1191,10 @@
     "infinitive_no_niqqud": "לשבת"
   },
   {
-    "verb": "יְשַׁבְתֶּם",
+    "verb": "יָשַׁבְתֶּם",
     "niqqud_less": "ישבתם",
     "translation": "you m. pl. sat",
-    "reading": "yeshavtem",
+    "reading": "yashavtem",
     "binyan": "PA'AL",
     "phenomenon": "1st",
     "root": "י - שׁ - ב",
@@ -1206,10 +1206,10 @@
     "infinitive_no_niqqud": "לשבת"
   },
   {
-    "verb": "יְשַׁבְתֶּן",
+    "verb": "יָשַׁבְתֶּן",
     "niqqud_less": "ישבתן",
     "translation": "you f. pl. sat",
-    "reading": "yeshavten",
+    "reading": "yashavten",
     "binyan": "PA'AL",
     "phenomenon": "1st",
     "root": "י - שׁ - ב",
@@ -1905,10 +1905,10 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "סְגַרְתֶּם",
+    "verb": "סָגַרְתֶּם",
     "niqqud_less": "סגרתם",
     "translation": "you m. pl. closed",
-    "reading": "sgartem",
+    "reading": "sagartem",
     "binyan": "PA'AL",
     "root": "ס - ג - ר",
     "hint": "This root does not have any special conjugation properties.",
@@ -1919,10 +1919,10 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "סְגַרְתֶּן",
+    "verb": "סָגַרְתֶּן",
     "niqqud_less": "סגרתן",
     "translation": "you f. pl. closed",
-    "reading": "sgarten",
+    "reading": "sagarten",
     "binyan": "PA'AL",
     "root": "ס - ג - ר",
     "hint": "This root does not have any special conjugation properties.",
@@ -1975,7 +1975,7 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "אסגור",
+    "verb": "אֶסְגוֹר",
     "niqqud_less": "אסגור",
     "translation": "I will close",
     "reading": "esgor",
@@ -1989,7 +1989,7 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "נסגור",
+    "verb": "נִסְגוֹר",
     "niqqud_less": "נסגור",
     "translation": "we will close",
     "reading": "nisgor",
@@ -2003,7 +2003,7 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "תסגור",
+    "verb": "תִסְגוֹר",
     "niqqud_less": "תסגור",
     "translation": "you m. sg. will close",
     "reading": "tisgor",
@@ -2045,7 +2045,7 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "יסגור",
+    "verb": "יִסְגוֹר",
     "niqqud_less": "יסגור",
     "translation": "he / it will close",
     "reading": "yisgor",
@@ -2059,7 +2059,7 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "תסגור",
+    "verb": "תִסְגוֹר",
     "niqqud_less": "תסגור",
     "translation": "she / it will close",
     "reading": "tisgor",
@@ -2129,7 +2129,7 @@
     "infinitive_no_niqqud": "לסגור"
   },
   {
-    "verb": "לסגור",
+    "verb": "לִסְגוֹר",
     "niqqud_less": "לסגור",
     "translation": "to close",
     "reading": "lisgor",
@@ -2139,7 +2139,7 @@
     "tense": "Infinitive",
     "person": "",
     "url": "https://www.pealim.com/dict/1314-lisgor/",
-    "infinitive": "לסגור",
+    "infinitive": "לִסְגוֹר",
     "infinitive_no_niqqud": "לסגור"
   },
   {
@@ -2263,10 +2263,10 @@
     "infinitive_no_niqqud": "לקנות"
   },
   {
-    "verb": "קְנִיתֶם",
+    "verb": "קָנִיתֶם",
     "niqqud_less": "קניתם",
     "translation": "you m. pl. bought",
-    "reading": "knitem",
+    "reading": "kanitem",
     "binyan": "PA'AL",
     "phenomenon": "3rd",
     "root": "ק - נ - ה",
@@ -2278,10 +2278,10 @@
     "infinitive_no_niqqud": "לקנות"
   },
   {
-    "verb": "קְנִיתֶן",
+    "verb": "קָנִיתֶן",
     "niqqud_less": "קניתן",
     "translation": "you f. pl. bought",
-    "reading": "kniten",
+    "reading": "kaniten",
     "binyan": "PA'AL",
     "phenomenon": "3rd",
     "root": "ק - נ - ה",
